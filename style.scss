@@ -1,0 +1,532 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: Smythe;
+  src: url(font/Smythe-Regular.ttf);
+}
+
+@font-face {
+  font-family: Manrope;
+  src: url(font/Manrope-Regular.ttf);
+}
+
+/*colors*/
+$white: #fff;
+$black: #000;
+$gray: #8b8b8b;
+$green: #16db99;
+$dGray: #757575; //input
+$rGray: #bbb; //remove
+$dGreen: #065f46;
+$red: rgb(249, 123, 123);
+
+@mixin text($font, $size, $weight, $color, $space) {
+  font-family: $font;
+  font-size: $size;
+  font-weight: $weight;
+  color: $color;
+  letter-spacing: $space;
+}
+
+@mixin flex($direction) {
+  display: flex;
+  flex-direction: $direction;
+}
+
+@mixin button($height) {
+  width: 100%;
+  background-color: $green;
+  height: $height;
+  border: none;
+  border-radius: 0.3rem;
+  @include text(Manrope, 0.9rem, 400, $white, 0.01rem);
+  transition: 0.3s;
+  &:hover {
+    cursor: pointer;
+    background-color: #18f5ab;
+    transform: scale(1.05, 1.05);
+    transition: 0.3s;
+  }
+}
+
+/*styling*/
+body {
+  padding: 2rem 1.5rem;
+  @include flex(column);
+  align-items: center;
+}
+
+#bg {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  background-color: $black;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+header {
+  width: 100%;
+  max-width: 24rem;
+  height: 10.44rem;
+  background-image: url(images/theme.png);
+  background-repeat: no-repeat;
+  background-position: 60% 0;
+  padding: 2rem 1rem;
+  border-radius: 0.2rem;
+  @include flex(column);
+  justify-content: center;
+  margin: /*3rem auto*/ 0 auto;
+
+  h1 {
+    @include text(Smythe, 2rem, 400, $white, 0.1rem);
+  }
+  p {
+    @include text(Smythe, 1rem, 400, $white, 0.05rem);
+  }
+}
+
+main {
+  width: 100%;
+  max-width: 24rem;
+  padding: 2rem 1rem;
+  border-radius: 0 0 0.2rem 0.2rem;
+  box-shadow: 0 0 1rem $gray;
+  margin: 0 auto;
+  @include flex(column);
+
+  .item {
+    @include flex(column);
+    margin-bottom: 3rem;
+    .default {
+      @include flex(row);
+      position: relative;
+      width: 100%;
+      margin-bottom: 1rem;
+
+      img {
+        width: 4rem;
+        height: 4rem;
+        margin-right: 1rem;
+      }
+      div {
+        height: 4rem;
+        @include flex(column);
+        justify-content: space-between;
+        h2 {
+          @include text(Smythe, 1.3rem, 400, $black, 0.08rem);
+        }
+        p {
+          @include text(Smythe, 0.8rem, 400, $gray, 0.05rem);
+        }
+        b {
+          @include text(Smythe, 1rem, 400, $black, 0.05rem);
+        }
+      }
+      button {
+        width: 2rem;
+        height: 2rem;
+        border: none;
+        border-radius: 2rem;
+        position: absolute;
+        right: 0;
+        top: 1rem;
+        img {
+          width: 1rem;
+          height: 1rem;
+          margin: 0 auto;
+        }
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+    .selPizza,
+    .selBurger,
+    .selDrink {
+      @include flex(column);
+      border-top: 1px solid $dGray;
+      opacity: 0;
+      transition: 0.3s;
+      .pick {
+        @include flex(row);
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid $gray;
+        height: 0;
+        padding-left: 1rem;
+        transition: 0.3s;
+        pointer-events: none;
+
+        &:hover {
+          background-color: #d7d5d5;
+          cursor: pointer;
+        }
+        h2 {
+          @include text(Smythe, 1.2rem, 400, $black, 0.05rem);
+          line-height: 1rem;
+          span {
+            @include text(Smythe, 1rem, 400, $gray, 0.05rem);
+          }
+        }
+        .quantity {
+          width: 5rem;
+          @include flex(row);
+          img {
+            background-color: $green;
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 0.3rem 0 0 0.3rem;
+          }
+          .add {
+            border-radius: 0rem 0.3rem 0.3rem 0;
+          }
+          input {
+            height: 1.5rem;
+            width: 2rem;
+            border: 1px solid $dGray;
+            border-left: none;
+            border-right: none;
+            text-align: center;
+            outline: none;
+          }
+        }
+      }
+    }
+  }
+
+  .order {
+    @include flex(column);
+    align-items: center;
+    padding: 0.5rem;
+    display: none;
+    h2 {
+      @include text(Smythe, 1.4rem, 400, $black, 0.08rem);
+    }
+    .orderList {
+      border-bottom: 2px solid $black;
+      width: 100%;
+      padding: 1rem 0;
+      margin-bottom: 1rem;
+
+      div {
+        @include flex(row);
+        justify-content: space-between;
+        align-items: center;
+        pointer-events: none;
+        position: relative;
+        margin-bottom: 0.5rem;
+        h2 {
+          @include text(Smythe, 1.5rem, 400, $black, 0.08rem);
+          position: absolute;
+          left: 1rem;
+          span {
+            @include text(Smythe, 1.2rem, 400, $gray, 0.08rem);
+            position: relative;
+            left: 0.5rem;
+            bottom: 0.1rem;
+            pointer-events: all;
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+        p {
+          @include text(Smythe, 1.2rem, 400, $black, 0.08rem);
+        }
+      }
+    }
+    .tot {
+      @include flex(row);
+      justify-content: space-between;
+      width: 100%;
+      margin-bottom: 1.5rem;
+      @include text(Smythe, 1.2rem, 400, $black, 0.08rem);
+      b {
+        @include text(Smythe, 1rem, 400, $black, 0.05rem);
+      }
+    }
+    button {
+      @include button(2.5rem);
+    }
+  }
+}
+
+.popUp {
+  width: 80%;
+  max-width: 21rem;
+  padding: 1rem;
+  text-align: center;
+  height: 21rem;
+  background-color: $white;
+  box-shadow: 0 0 5rem $dGray;
+  @include flex(column);
+  justify-content: space-between;
+  position: fixed;
+  top: 50%;
+  margin-top: -11.5rem;
+  opacity: 0;
+  transition: 0.5s;
+  pointer-events: none;
+  z-index: 1;
+  h1 {
+    @include text(Manrope, 1rem, 700, $black, 0);
+    margin: 1rem 0;
+  }
+  div {
+    @include flex(column);
+    p {
+      @include text(Manrope, 0.8rem, 400, $red, 0);
+      align-self: self-start;
+    }
+    input {
+      @include text(Manrope, 1rem, 400, $black, 0);
+      height: 2.5rem;
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid $gray;
+      outline: none;
+    }
+  }
+
+  button {
+    @include button(2.5rem);
+    margin-top: 1rem;
+  }
+}
+
+.success {
+  width: 80%;
+  max-width: 20rem;
+  height: fit-content;
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 0.5rem;
+  padding: 1rem 0;
+  position: fixed;
+  top: 50%;
+  opacity: 0;
+  transition: 3s;
+  pointer-events: none;
+  @include flex(column);
+  justify-content: center;
+  background-color: hsl(160, 45%, 69%);
+  @include text(Smythe, 0.6rem, 400, $dGreen, 0.08rem);
+  z-index: 1.5;
+}
+
+footer {
+  margin-top: 2rem;
+  @include text(Manrope, 1.2rem, 400, $black, 0);
+  a {
+    color: rgb(95, 95, 244);
+  }
+}
+
+/*active states js*/
+.item.active {
+  .selPizza,
+  .selBurger,
+  .selDrink {
+    opacity: 1;
+    transition: 0.3s;
+
+    .pick {
+      height: 3rem;
+      transition: 0.3s;
+      .quantity {
+        img {
+          pointer-events: all;
+        }
+      }
+    }
+  }
+}
+
+.order.active {
+  display: flex;
+}
+
+.popUp.active {
+  opacity: 1;
+  transition: 0.5s;
+  pointer-events: all;
+}
+
+#bg.active {
+  opacity: 0.5;
+  transition: 0.5s;
+  pointer-events: all;
+}
+
+div {
+  input.active {
+    border: 1px solid $red;
+  }
+}
+
+p.active {
+  animation: errAnim;
+  animation-duration: 0.1s;
+}
+
+@keyframes errAnim {
+  0% {
+    transform: translate(0);
+  }
+
+  25% {
+    transform: translate(0.5rem);
+  }
+
+  50% {
+    transform: translate(-0.5rem);
+  }
+
+  75% {
+    transform: translate(0.5rem);
+  }
+
+  100% {
+    transform: translate(0);
+  }
+}
+
+.success.active {
+  opacity: 1;
+  transform: scale(1.1, 1.1);
+  transition: 0.3s;
+  transition-delay: 0.2s;
+}
+
+@media screen and (min-width: 720px) {
+  header {
+    width: 37.5rem;
+    max-width: none;
+    padding: 3rem;
+
+    h1 {
+      font-size: 2.44rem;
+      line-height: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    p {
+      font-size: 1.4rem;
+      line-height: 0.86rem;
+    }
+  }
+
+  main {
+    width: 37.5rem;
+    max-width: none;
+    padding: 2rem;
+
+    .item {
+      .default {
+        img {
+          width: 5rem;
+          height: 5.6rem;
+        }
+        div {
+          height: 5.6rem;
+          h2 {
+            font-size: 1.75rem;
+          }
+          p {
+            font-size: 1rem;
+          }
+          b {
+            font-size: 1.25rem;
+          }
+        }
+        button {
+          width: 3.125rem;
+          height: 3.125rem;
+          img {
+            width: 1.5rem;
+            height: 1.6rem;
+          }
+        }
+      }
+
+      .selPizza,
+      .selBurger,
+      .selDrink {
+        .pick {
+          h2 {
+            font-size: 1.5rem;
+            span {
+              font-size: 1rem;
+            }
+          }
+          .quantity {
+            width: 7rem;
+            img {
+              width: 2rem;
+              height: 2rem;
+            }
+            input {
+              width: 3rem;
+              height: 2rem;
+            }
+          }
+        }
+      }
+    }
+
+    .order {
+      h2 {
+        font-size: 1.75rem;
+      }
+      .tot {
+        font-size: 1.5rem;
+        b {
+          font-size: 1.2rem;
+        }
+      }
+      button {
+        height: 3.5rem;
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  .popUp {
+    width: 33.5rem;
+    max-width: none;
+    padding: 2rem;
+    height: 33rem;
+    margin-top: -16.5rem;
+
+    h1 {
+      font-size: 1.5rem;
+    }
+    div {
+      p {
+        font-size: 1rem;
+      }
+      input {
+        height: 4.4rem;
+        font-size: 1.2rem;
+      }
+    }
+
+    button {
+      height: 3.5rem;
+      font-size: 1.2rem;
+    }
+  }
+
+  .success {
+    width: 30rem;
+    max-width: none;
+    font-size: 1.2rem;
+  }
+}

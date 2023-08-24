@@ -1,0 +1,599 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: Smythe;
+  src: url(font/Smythe-Regular.ttf);
+}
+@font-face {
+  font-family: Manrope;
+  src: url(font/Manrope-Regular.ttf);
+}
+/*colors*/
+/*styling*/
+body {
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#bg {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  background-color: #000;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+header {
+  width: 100%;
+  max-width: 24rem;
+  height: 10.44rem;
+  background-image: url(images/theme.png);
+  background-repeat: no-repeat;
+  background-position: 60% 0;
+  padding: 2rem 1rem;
+  border-radius: 0.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+}
+header h1 {
+  font-family: Smythe;
+  font-size: 2rem;
+  font-weight: 400;
+  color: #fff;
+  letter-spacing: 0.1rem;
+}
+header p {
+  font-family: Smythe;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #fff;
+  letter-spacing: 0.05rem;
+}
+
+main {
+  width: 100%;
+  max-width: 24rem;
+  padding: 2rem 1rem;
+  border-radius: 0 0 0.2rem 0.2rem;
+  box-shadow: 0 0 1rem #8b8b8b;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+main .item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 3rem;
+}
+main .item .default {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+main .item .default img {
+  width: 4rem;
+  height: 4rem;
+  margin-right: 1rem;
+}
+main .item .default div {
+  height: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+main .item .default div h2 {
+  font-family: Smythe;
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: #000;
+  letter-spacing: 0.08rem;
+}
+main .item .default div p {
+  font-family: Smythe;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #8b8b8b;
+  letter-spacing: 0.05rem;
+}
+main .item .default div b {
+  font-family: Smythe;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #000;
+  letter-spacing: 0.05rem;
+}
+main .item .default button {
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  border-radius: 2rem;
+  position: absolute;
+  right: 0;
+  top: 1rem;
+}
+main .item .default button img {
+  width: 1rem;
+  height: 1rem;
+  margin: 0 auto;
+}
+main .item .default button:hover {
+  cursor: pointer;
+}
+main .item .selPizza,
+main .item .selBurger,
+main .item .selDrink {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid #757575;
+  opacity: 0;
+  transition: 0.3s;
+}
+main .item .selPizza .pick,
+main .item .selBurger .pick,
+main .item .selDrink .pick {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #8b8b8b;
+  height: 0;
+  padding-left: 1rem;
+  transition: 0.3s;
+  pointer-events: none;
+}
+main .item .selPizza .pick:hover,
+main .item .selBurger .pick:hover,
+main .item .selDrink .pick:hover {
+  background-color: #d7d5d5;
+  cursor: pointer;
+}
+main .item .selPizza .pick h2,
+main .item .selBurger .pick h2,
+main .item .selDrink .pick h2 {
+  font-family: Smythe;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #000;
+  letter-spacing: 0.05rem;
+  line-height: 1rem;
+}
+main .item .selPizza .pick h2 span,
+main .item .selBurger .pick h2 span,
+main .item .selDrink .pick h2 span {
+  font-family: Smythe;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #8b8b8b;
+  letter-spacing: 0.05rem;
+}
+main .item .selPizza .pick .quantity,
+main .item .selBurger .pick .quantity,
+main .item .selDrink .pick .quantity {
+  width: 5rem;
+  display: flex;
+  flex-direction: row;
+}
+main .item .selPizza .pick .quantity img,
+main .item .selBurger .pick .quantity img,
+main .item .selDrink .pick .quantity img {
+  background-color: #16db99;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 0.3rem 0 0 0.3rem;
+}
+main .item .selPizza .pick .quantity .add,
+main .item .selBurger .pick .quantity .add,
+main .item .selDrink .pick .quantity .add {
+  border-radius: 0rem 0.3rem 0.3rem 0;
+}
+main .item .selPizza .pick .quantity input,
+main .item .selBurger .pick .quantity input,
+main .item .selDrink .pick .quantity input {
+  height: 1.5rem;
+  width: 2rem;
+  border: 1px solid #757575;
+  border-left: none;
+  border-right: none;
+  text-align: center;
+  outline: none;
+}
+main .order {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem;
+  display: none;
+}
+main .order h2 {
+  font-family: Smythe;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: #000;
+  letter-spacing: 0.08rem;
+}
+main .order .orderList {
+  border-bottom: 2px solid #000;
+  width: 100%;
+  padding: 1rem 0;
+  margin-bottom: 1rem;
+}
+main .order .orderList div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+main .order .orderList div h2 {
+  font-family: Smythe;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #000;
+  letter-spacing: 0.08rem;
+  position: absolute;
+  left: 1rem;
+}
+main .order .orderList div h2 span {
+  font-family: Smythe;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #8b8b8b;
+  letter-spacing: 0.08rem;
+  position: relative;
+  left: 0.5rem;
+  bottom: 0.1rem;
+  pointer-events: all;
+}
+main .order .orderList div h2 span:hover {
+  cursor: pointer;
+}
+main .order .orderList div p {
+  font-family: Smythe;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #000;
+  letter-spacing: 0.08rem;
+}
+main .order .tot {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 1.5rem;
+  font-family: Smythe;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #000;
+  letter-spacing: 0.08rem;
+}
+main .order .tot b {
+  font-family: Smythe;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #000;
+  letter-spacing: 0.05rem;
+}
+main .order button {
+  width: 100%;
+  background-color: #16db99;
+  height: 2.5rem;
+  border: none;
+  border-radius: 0.3rem;
+  font-family: Manrope;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #fff;
+  letter-spacing: 0.01rem;
+  transition: 0.3s;
+}
+main .order button:hover {
+  cursor: pointer;
+  background-color: #18f5ab;
+  transform: scale(1.05, 1.05);
+  transition: 0.3s;
+}
+
+.popUp {
+  width: 80%;
+  max-width: 21rem;
+  padding: 1rem;
+  text-align: center;
+  height: 21rem;
+  background-color: #fff;
+  box-shadow: 0 0 5rem #757575;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: fixed;
+  top: 50%;
+  margin-top: -11.5rem;
+  opacity: 0;
+  transition: 0.5s;
+  pointer-events: none;
+  z-index: 1;
+}
+.popUp h1 {
+  font-family: Manrope;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #000;
+  letter-spacing: 0;
+  margin: 1rem 0;
+}
+.popUp div {
+  display: flex;
+  flex-direction: column;
+}
+.popUp div p {
+  font-family: Manrope;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: rgb(249, 123, 123);
+  letter-spacing: 0;
+  align-self: self-start;
+}
+.popUp div input {
+  font-family: Manrope;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #000;
+  letter-spacing: 0;
+  height: 2.5rem;
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid #8b8b8b;
+  outline: none;
+}
+.popUp button {
+  width: 100%;
+  background-color: #16db99;
+  height: 2.5rem;
+  border: none;
+  border-radius: 0.3rem;
+  font-family: Manrope;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #fff;
+  letter-spacing: 0.01rem;
+  transition: 0.3s;
+  margin-top: 1rem;
+}
+.popUp button:hover {
+  cursor: pointer;
+  background-color: #18f5ab;
+  transform: scale(1.05, 1.05);
+  transition: 0.3s;
+}
+
+.success {
+  width: 80%;
+  max-width: 20rem;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 0.5rem;
+  padding: 1rem 0;
+  position: fixed;
+  top: 50%;
+  opacity: 0;
+  transition: 3s;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: hsl(160, 45%, 69%);
+  font-family: Smythe;
+  font-size: 0.6rem;
+  font-weight: 400;
+  color: #065f46;
+  letter-spacing: 0.08rem;
+  z-index: 1.5;
+}
+
+footer {
+  margin-top: 2rem;
+  font-family: Manrope;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #000;
+  letter-spacing: 0;
+}
+footer a {
+  color: rgb(95, 95, 244);
+}
+
+/*active states js*/
+.item.active .selPizza,
+.item.active .selBurger,
+.item.active .selDrink {
+  opacity: 1;
+  transition: 0.3s;
+}
+.item.active .selPizza .pick,
+.item.active .selBurger .pick,
+.item.active .selDrink .pick {
+  height: 3rem;
+  transition: 0.3s;
+}
+.item.active .selPizza .pick .quantity img,
+.item.active .selBurger .pick .quantity img,
+.item.active .selDrink .pick .quantity img {
+  pointer-events: all;
+}
+
+.order.active {
+  display: flex;
+}
+
+.popUp.active {
+  opacity: 1;
+  transition: 0.5s;
+  pointer-events: all;
+}
+
+#bg.active {
+  opacity: 0.5;
+  transition: 0.5s;
+  pointer-events: all;
+}
+
+div input.active {
+  border: 1px solid rgb(249, 123, 123);
+}
+
+p.active {
+  animation: errAnim;
+  animation-duration: 0.1s;
+}
+
+@keyframes errAnim {
+  0% {
+    transform: translate(0);
+  }
+  25% {
+    transform: translate(0.5rem);
+  }
+  50% {
+    transform: translate(-0.5rem);
+  }
+  75% {
+    transform: translate(0.5rem);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+.success.active {
+  opacity: 1;
+  transform: scale(1.1, 1.1);
+  transition: 0.3s;
+  transition-delay: 0.2s;
+}
+
+@media screen and (min-width: 720px) {
+  header {
+    width: 37.5rem;
+    max-width: none;
+    padding: 3rem;
+  }
+  header h1 {
+    font-size: 2.44rem;
+    line-height: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  header p {
+    font-size: 1.4rem;
+    line-height: 0.86rem;
+  }
+  main {
+    width: 37.5rem;
+    max-width: none;
+    padding: 2rem;
+  }
+  main .item .default img {
+    width: 5rem;
+    height: 5.6rem;
+  }
+  main .item .default div {
+    height: 5.6rem;
+  }
+  main .item .default div h2 {
+    font-size: 1.75rem;
+  }
+  main .item .default div p {
+    font-size: 1rem;
+  }
+  main .item .default div b {
+    font-size: 1.25rem;
+  }
+  main .item .default button {
+    width: 3.125rem;
+    height: 3.125rem;
+  }
+  main .item .default button img {
+    width: 1.5rem;
+    height: 1.6rem;
+  }
+  main .item .selPizza .pick h2,
+  main .item .selBurger .pick h2,
+  main .item .selDrink .pick h2 {
+    font-size: 1.5rem;
+  }
+  main .item .selPizza .pick h2 span,
+  main .item .selBurger .pick h2 span,
+  main .item .selDrink .pick h2 span {
+    font-size: 1rem;
+  }
+  main .item .selPizza .pick .quantity,
+  main .item .selBurger .pick .quantity,
+  main .item .selDrink .pick .quantity {
+    width: 7rem;
+  }
+  main .item .selPizza .pick .quantity img,
+  main .item .selBurger .pick .quantity img,
+  main .item .selDrink .pick .quantity img {
+    width: 2rem;
+    height: 2rem;
+  }
+  main .item .selPizza .pick .quantity input,
+  main .item .selBurger .pick .quantity input,
+  main .item .selDrink .pick .quantity input {
+    width: 3rem;
+    height: 2rem;
+  }
+  main .order h2 {
+    font-size: 1.75rem;
+  }
+  main .order .tot {
+    font-size: 1.5rem;
+  }
+  main .order .tot b {
+    font-size: 1.2rem;
+  }
+  main .order button {
+    height: 3.5rem;
+    font-size: 1.2rem;
+  }
+  .popUp {
+    width: 33.5rem;
+    max-width: none;
+    padding: 2rem;
+    height: 33rem;
+    margin-top: -16.5rem;
+  }
+  .popUp h1 {
+    font-size: 1.5rem;
+  }
+  .popUp div p {
+    font-size: 1rem;
+  }
+  .popUp div input {
+    height: 4.4rem;
+    font-size: 1.2rem;
+  }
+  .popUp button {
+    height: 3.5rem;
+    font-size: 1.2rem;
+  }
+  .success {
+    width: 30rem;
+    max-width: none;
+    font-size: 1.2rem;
+  }
+}/*# sourceMappingURL=style.css.map */

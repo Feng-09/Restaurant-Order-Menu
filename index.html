@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feng | Restaurant Order Menu</title>
+
+    <link href="style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div id="bg"></div>
+    <header>
+      <h1>Jimmy's Diner</h1>
+      <p>The best burgers and pizzas in town.</p>
+    </header>
+    <main>
+      <section class="item">
+        <section class="default">
+          <img src="images/item-graphic.png" alt="pizza" />
+          <div>
+            <h2>Pizza</h2>
+            <p>pepperoni,mushroom,mozarella</p>
+            <b class="prices">$14</b>
+          </div>
+          <button class="itemAdd">
+            <img src="images/add.png" alt="add" />
+          </button>
+        </section>
+
+        <section class="selPizza">
+          <div class="pick">
+            <h2>Suya BBQ</h2>
+            <div class="quantity">
+              <img src="images/574118.png" alt="subtract" />
+              <input type="number" value="0" class="inp" />
+              <img src="images/1692407715648.png" alt="add" class="add" />
+            </div>
+          </div>
+          <div class="pick">
+            <h2>Chicken Pie</h2>
+            <div class="quantity">
+              <img src="images/574118.png" alt="subtract" />
+              <input type="number" value="0" class="inp" />
+              <img src="images/1692407715648.png" alt="add" class="add" />
+            </div>
+          </div>
+          <div class="pick">
+            <h2>Beef Sausage</h2>
+            <div class="quantity">
+              <img src="images/574118.png" alt="subtract" />
+              <input type="number" value="0" class="inp" />
+              <img src="images/1692407715648.png" alt="add" class="add" />
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <section class="item">
+        <section class="default">
+          <img src="images/item-hamburger.png" alt="hamburger" />
+          <div>
+            <h2>Hamburger</h2>
+            <p>beef,cheese,lettuce</p>
+            <b class="prices">$12</b>
+          </div>
+          <button class="itemAdd">
+            <img src="images/add.png" alt="add" />
+          </button>
+        </section>
+
+        <section class="selBurger">
+          <div class="pick">
+            <h2>Cheese Burger</h2>
+            <div class="quantity">
+              <img src="images/574118.png" alt="subtract" />
+              <input type="number" value="0" class="inp" />
+              <img src="images/1692407715648.png" alt="add" class="add" />
+            </div>
+          </div>
+          <div class="pick">
+            <h2>Veggie Burger</h2>
+            <div class="quantity">
+              <img src="images/574118.png" alt="subtract" />
+              <input type="number" value="0" class="inp" />
+              <img src="images/1692407715648.png" alt="add" class="add" />
+            </div>
+          </div>
+          <div class="pick">
+            <h2>Beef Burger</h2>
+            <div class="quantity">
+              <img src="images/574118.png" alt="subtract" />
+              <input type="number" value="0" class="inp" />
+              <img src="images/1692407715648.png" alt="add" class="add" />
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <section class="item">
+        <section class="default">
+          <img src="images/item-beer.png" alt="beer" />
+          <div>
+            <h2>Beer</h2>
+            <p>grain,hops,yeast,water</p>
+            <b class="prices">$12</b>
+          </div>
+          <button class="itemAdd">
+            <img src="images/add.png" alt="add" />
+          </button>
+        </section>
+
+        <section class="selDrink">
+          <div class="pick">
+            <h2>
+              Mild Beer<br />
+              <span>for kids</span>
+            </h2>
+            <div class="quantity">
+              <img src="images/574118.png" alt="subtract" />
+              <input type="number" value="0" class="inp" />
+              <img src="images/1692407715648.png" alt="add" class="add" />
+            </div>
+          </div>
+          <div class="pick">
+            <h2>
+              Soda<br />
+              <span>coca-cola, fanta, sprite</span>
+            </h2>
+            <div class="quantity">
+              <img src="images/574118.png" alt="subtract" />
+              <input type="number" value="0" class="inp" />
+              <img src="images/1692407715648.png" alt="add" class="add" />
+            </div>
+          </div>
+          <div class="pick">
+            <h2>
+              Water<br />
+              <span>free</span>
+            </h2>
+            <div class="quantity">
+              <img src="images/574118.png" alt="subtract" />
+              <input type="number" value="0" class="inp" />
+              <img src="images/1692407715648.png" alt="add" class="add" />
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <section class="order">
+        <h2>Your order</h2>
+        <div class="orderList"></div>
+        <div class="tot">
+          <p>Total price:</p>
+          <b>$</b>
+        </div>
+        <button class="pay">Complete order</button>
+      </section>
+    </main>
+
+    <article class="popUp">
+      <h1>Enter your card details</h1>
+      <div>
+        <p class="errMsg"></p>
+        <input
+          type="text"
+          placeholder="Enter your name"
+          value=""
+          class="payInp"
+        />
+      </div>
+      <div>
+        <p class="errMsg"></p>
+        <input
+          type="number"
+          placeholder="Enter your card number"
+          value=""
+          class="payInp"
+        />
+      </div>
+      <div>
+        <p class="errMsg"></p>
+        <input type="number" placeholder="Enter CVV" value="" class="payInp" />
+      </div>
+      <button class="pay">Pay</button>
+    </article>
+
+    <article class="success">
+      <h1>
+        Thanks, <span id="customerName"></span>! Your order is on its way!😋
+      </h1>
+    </article>
+
+    <footer>
+      Built by
+      <a href="https://twitter.com/feng09_?t=yHIQoG1kxw_DuWykEK4D0Q&s=09"
+        >feng</a
+      >
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
